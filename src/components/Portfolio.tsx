@@ -1,9 +1,128 @@
 import React, { useState } from 'react';
-import { PORTFOLIO_DATA } from '../data/companyData';
-import { PORTFOLIO_CATEGORIES } from '../data/portfolioData';
 import { PortfolioCategory, PortfolioItem } from '../types';
 import { Play, X, Plus } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+
+const PORTFOLIO_CATEGORIES: { id: PortfolioCategory; name: string }[] = [
+  { id: 'all', name: '전체 (All)' },
+  { id: 'production', name: '4K 미디어 프로덕션' },
+  { id: 'edu', name: '교육 콘텐츠 & 컨설팅' },
+  { id: 'press', name: '디지털 언론 & PR' },
+  { id: 'hucampus', name: '후캠퍼스 평생교육' },
+];
+
+const PORTFOLIO_DATA: PortfolioItem[] = [
+  {
+    id: '0kHSItVXKOU',
+    title: '능률 고등 영어 교재 연계 스마트 강좌',
+    cat: 'edu',
+    tag: 'NE능률',
+    label: '이러닝 콘텐츠 개발',
+    duration: '04:30',
+    year: '2024',
+    description: 'NE능률 고등 영어 교재 연계 스마트 이러닝 강좌 프로덕션 및 고화질 마스터링',
+    imageUrl: 'https://img.youtube.com/vi/0kHSItVXKOU/hqdefault.jpg'
+  },
+  {
+    id: '6xb2GYInARg',
+    title: '능률 중등 영어 맞춤형 학습 영상',
+    cat: 'edu',
+    tag: 'NE능률',
+    label: '교육 콘텐츠',
+    duration: '03:45',
+    year: '2024',
+    description: 'NE능률 중등 영어 교과 과정 맞춤형 인터랙티브 학습 영상 제작 및 교수설계',
+    imageUrl: 'https://img.youtube.com/vi/6xb2GYInARg/hqdefault.jpg'
+  },
+  {
+    id: 'rJ2U9T27WwU',
+    title: '태진옥 브랜드 브랜딩 홍보영상',
+    cat: 'production',
+    tag: '태진옥',
+    label: '홍보 영상 제작',
+    duration: '02:50',
+    year: '2024',
+    description: '브랜드 가치 제고를 위한 시네마틱 4K 기업 및 스토어 시그니처 홍보 영상',
+    imageUrl: 'https://img.youtube.com/vi/rJ2U9T27WwU/hqdefault.jpg'
+  },
+  {
+    id: 'PTqpVR-yIKg',
+    title: '경희사이버대학교 가상 크로마키 강좌',
+    cat: 'production',
+    tag: '경희사이버대학교',
+    label: '크로마키 스튜디오',
+    duration: '05:15',
+    year: '2024',
+    description: '경희사이버대학교 전용 가상 크로마키 세트 활용 고품질 대학 강의 프로덕션',
+    imageUrl: 'https://img.youtube.com/vi/PTqpVR-yIKg/hqdefault.jpg'
+  },
+  {
+    id: 'AbeWeusmjws',
+    title: '86인치 4K 전자칠판 스마트 강의 스튜디오',
+    cat: 'production',
+    tag: 'WHOMEDIA 스튜디오',
+    label: '전자칠판 강의',
+    duration: '04:10',
+    year: '2024',
+    description: '86인치 4K UHD 전자칠판 및 최신 판서 시스템을 적용한 스마트 강좌 촬영',
+    imageUrl: 'https://img.youtube.com/vi/AbeWeusmjws/hqdefault.jpg'
+  },
+  {
+    id: 'PVVdU-CYowA',
+    title: '웅진 스마트학습 연계 디지털 교재 강의',
+    cat: 'edu',
+    tag: '웅진',
+    label: '이러닝 콘텐츠',
+    duration: '03:55',
+    year: '2024',
+    description: '웅진 스마트학습 연계 86인치 전자칠판 활용 디지털 교재 동영상 강의 제작',
+    imageUrl: 'https://img.youtube.com/vi/PVVdU-CYowA/hqdefault.jpg'
+  },
+  {
+    id: 'PxAZYrpdowU',
+    title: '웅진 블랙보드 세트 무반사 강의',
+    cat: 'edu',
+    tag: '웅진',
+    label: '오프라인 교육/판서',
+    duration: '04:05',
+    year: '2024',
+    description: '웅진 에듀테크 특수 무반사 블랙보드 세트 기반 프리미엄 강좌 시각화 구현',
+    imageUrl: 'https://img.youtube.com/vi/PxAZYrpdowU/hqdefault.jpg'
+  },
+  {
+    id: 'x4Cb5At6Z_M',
+    title: '실시간 CG 인터랙티브 스마트 모션 강의',
+    cat: 'production',
+    tag: '인터랙티브 미디어',
+    label: 'CG/인터랙티브',
+    duration: '03:30',
+    year: '2024',
+    description: '실시간 CG 모션 그래픽 및 인터랙티브 효과를 결합한 차세대 학습 몰입형 강의',
+    imageUrl: 'https://img.youtube.com/vi/x4Cb5At6Z_M/hqdefault.jpg'
+  },
+  {
+    id: 'JwCrB4dKgDU',
+    title: '후캠퍼스 모바일 태블릿 스마트 에듀 강의',
+    cat: 'hucampus',
+    tag: '후캠퍼스 평생교육원',
+    label: '태블릿강의/평생교육',
+    duration: '03:15',
+    year: '2024',
+    description: '고해상도 태블릿 판서 및 디지털 에듀테크 솔루션 결합 모바일 최적화 강의',
+    imageUrl: 'https://img.youtube.com/vi/JwCrB4dKgDU/hqdefault.jpg'
+  },
+  {
+    id: '-Is7q7qD9Rc',
+    title: '한국AI교육신문 & 뉴미디어 PR 브랜딩',
+    cat: 'press',
+    tag: '한국AI교육신문',
+    label: '디지털 언론 PR',
+    duration: '00:45',
+    year: '2024',
+    description: '유튜브 뉴미디어 및 언론 포털 브랜딩 강화를 위한 트렌디한 시그니처 오프닝 및 PR',
+    imageUrl: 'https://img.youtube.com/vi/-Is7q7qD9Rc/hqdefault.jpg'
+  }
+];
 
 export const Portfolio: React.FC = () => {
   const [activeTab, setActiveTab] = useState<PortfolioCategory>('all');

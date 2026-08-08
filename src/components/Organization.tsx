@@ -1,6 +1,44 @@
 import React from 'react';
-import { DIVISIONS_DATA, COMPANY_INFO } from '../data/companyData';
+import { DivisionItem } from '../types';
 import { ShieldCheck, Video, BookOpen, Cpu, Briefcase, FlaskConical } from 'lucide-react';
+
+const ORGANIZATION_DATA: DivisionItem[] = [
+  {
+    id: 'div-rd',
+    code: 'R&D CENTER',
+    name: '기업부설연구소',
+    description: 'AI 에듀테크 · 미래 교육 콘텐츠 & 미디어 기술 연구 개발',
+    subCategories: ['AI연구팀', '미디어기술팀']
+  },
+  {
+    id: 'div-1',
+    code: 'DIVISION 01',
+    name: '교육사업부',
+    description: '교육과정 맞춤 설계 및 사업 운영 총괄',
+    subCategories: ['기획팀', '운영팀']
+  },
+  {
+    id: 'div-2',
+    code: 'DIVISION 02',
+    name: '에듀테크부',
+    description: 'AI 교육 콘텐츠 및 UI/UX 디자인 개발',
+    subCategories: ['AI개발팀', '디자인팀']
+  },
+  {
+    id: 'div-3',
+    code: 'DIVISION 03',
+    name: '영상미디어부',
+    description: '고품질 교육 영상 촬영, 편집 및 연출',
+    subCategories: ['촬영팀', '편집팀']
+  },
+  {
+    id: 'div-4',
+    code: 'DIVISION 04',
+    name: '경영지원부',
+    description: '언론 홍보, PR 및 경영 행정 관리',
+    subCategories: ['홍보팀', '경영지원팀']
+  }
+];
 
 export const Organization: React.FC = () => {
   const getIcon = (code: string) => {
@@ -67,7 +105,7 @@ export const Organization: React.FC = () => {
 
         {/* Divisions Grid - 5 Cards with Unified Concept */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5 sm:gap-4 lg:gap-4">
-          {DIVISIONS_DATA.map((div) => (
+          {ORGANIZATION_DATA.map((div) => (
             <div 
               key={div.id} 
               id={div.id}
