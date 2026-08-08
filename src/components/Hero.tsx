@@ -132,12 +132,12 @@ export const Hero: React.FC = () => {
                 교육의 미래를 완성하다
               </span>
               <span className="text-slate-100 text-lg sm:text-2xl md:text-3xl lg:text-4xl font-extrabold block">
-                이러닝 콘텐츠 기획·개발 · 영상 제작 · 오프라인 전문 교육 그룹
+                이러닝 콘텐츠 기획·개발 · 영상 제작 · 오프라인 교육
               </span>
             </h1>
 
             <p className="text-slate-200 text-xs sm:text-base md:text-lg font-medium leading-relaxed max-w-2xl mx-auto px-2 break-keep">
-              체계적인 교수설계 기반의 맞춤형 이러닝 콘텐츠 개발부터 전문 영상 제작, 오프라인 교육까지 대한민국 프리미엄 교육 그룹의 기준을 만들어갑니다.
+              체계적인 교수설계(ID) 기반의 맞춤형 이러닝 콘텐츠 개발부터 전문 영상 제작, 오프라인 교육까지 대한민국 프리미엄 교육의 기준을 만들어갑니다.
             </p>
 
             {/* Rolling Keyword Display */}
