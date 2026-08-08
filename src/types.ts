@@ -64,3 +64,16 @@ export interface InquiryFormData {
   message: string;
   privacyAgreed: boolean;
 }
+
+export interface InquiryLogItem {
+  id: string;
+  company: string;
+  name: string;
+  phone: string;
+  category: string;
+  message: string;
+  createdAt: string;
+  status: '접수대기' | '확인중' | '처리완료';
+  adminMemo?: string;
+}
+

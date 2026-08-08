@@ -1,8 +1,12 @@
 import React from 'react';
 import { COMPANY_INFO } from '../data/companyData';
-import { Phone, Mail, MapPin } from 'lucide-react';
+import { Phone, Mail, MapPin, ShieldCheck } from 'lucide-react';
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+  onOpenAdmin?: () => void;
+}
+
+export const Footer: React.FC<FooterProps> = ({ onOpenAdmin }) => {
   return (
     <footer className="bg-slate-950 text-slate-400 py-12 border-t border-slate-800 text-xs snap-end flex-shrink-0">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -27,13 +31,10 @@ export const Footer: React.FC = () => {
               <Phone className="w-3.5 h-3.5 text-emerald-500" />
               <span>{COMPANY_INFO.phone}</span>
             </a>
-            <a 
-              href={`mailto:${COMPANY_INFO.email}`}
-              className="flex items-center space-x-1.5 bg-slate-900 hover:bg-slate-800 text-slate-200 px-3.5 py-2 rounded-lg border border-slate-800 transition-colors"
-            >
+            <div className="flex items-center space-x-1.5 bg-slate-900 text-slate-200 px-3.5 py-2 rounded-lg border border-slate-800">
               <Mail className="w-3.5 h-3.5 text-emerald-500" />
               <span>{COMPANY_INFO.email}</span>
-            </a>
+            </div>
           </div>
         </div>
 
@@ -49,9 +50,20 @@ export const Footer: React.FC = () => {
             </p>
           </div>
 
-          <p className="text-[11px] text-slate-600">
-            © 2026 HOOMEDIA. All rights reserved.
-          </p>
+          <div className="flex items-center space-x-4">
+            {onOpenAdmin && (
+              <button
+                onClick={onOpenAdmin}
+                className="text-xs text-slate-400 hover:text-white flex items-center space-x-1 underline decoration-slate-700 underline-offset-4"
+              >
+                <ShieldCheck className="w-3.5 h-3.5 text-red-500" />
+                <span>관리자 게시판</span>
+              </button>
+            )}
+            <p className="text-[11px] text-slate-600">
+              © 2026 HOOMEDIA. All rights reserved.
+            </p>
+          </div>
         </div>
       </div>
     </footer>

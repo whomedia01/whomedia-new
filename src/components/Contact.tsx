@@ -20,11 +20,26 @@ export const Contact: React.FC<ContactProps> = ({ initialStudioSelect }) => {
 
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.privacyAgreed) {
       alert('개인정보 수집 및 이용에 동의해주세요.');
       return;
+    }
+    try {
+      await fetch('/api/inquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          company: formData.clientName,
+          name: formData.contactPerson,
+          phone: formData.phone,
+          category: formData.serviceType,
+          message: formData.message,
+        })
+      });
+    } catch (err) {
+      console.error('Inquiry submission error:', err);
     }
     setSubmitted(true);
   };
@@ -79,12 +94,9 @@ export const Contact: React.FC<ContactProps> = ({ initialStudioSelect }) => {
                       <span className="text-xs font-extrabold text-slate-900 truncate max-w-[180px] sm:max-w-xs block">{COMPANY_INFO.email}</span>
                     </div>
                   </div>
-                  <a
-                    href={`mailto:${COMPANY_INFO.email}`}
-                    className="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3 py-2 rounded-lg transition-colors text-center flex items-center justify-center space-x-1"
-                  >
-                    <span>문의 이메일 작성</span>
-                  </a>
+                  <span className="text-xs font-bold text-slate-500 bg-slate-200 px-3 py-2 rounded-lg text-center">
+                    대표 이메일 안내
+                  </span>
                 </div>
 
                 {/* Location Card */}

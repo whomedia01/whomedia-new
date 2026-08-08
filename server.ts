@@ -70,76 +70,13 @@ async function startServer() {
       };
       inquiryLogs.unshift(newInquiry);
 
-      console.log(`[INQUIRY RECEIVED - Multi-Admin Broadcast]`, newInquiry);
-
-      // Webhook & Email Notification Relay to Receiver Emails
-      const defaultEmails = "whomedia03@gmail.com, james5183@naver.com, apark12321@gmail.com";
-      const rawTargetEmails = process.env.RECEIVER_EMAIL || defaultEmails;
-      const emailList = rawTargetEmails.split(",").map(e => e.trim()).filter(Boolean);
-      const webhookUrl = process.env.SLACK_WEBHOOK_URL || process.env.INQUIRY_WEBHOOK_URL || process.env.FORMSPREE_URL;
-      let emailSent = false;
-
-      // 1. Send via FormSubmit AJAX API to all target emails
-      for (const email of emailList) {
-        try {
-          const emailRes = await fetch(`https://formsubmit.co/ajax/${email}`, {
-            method: "POST",
-            headers: { 
-              "Content-Type": "application/json",
-              "Accept": "application/json",
-              "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-            },
-            body: JSON.stringify({
-              _subject: `[WHOMEDIA 신규 프로젝트 문의] ${company} - ${name}님`,
-              _template: "table",
-              _captcha: "false",
-              "기관/회사명": company,
-              "담당자": name,
-              "연락처": phone,
-              "문의유형": category,
-              "상세내용": message,
-              "접수시각": createdAt
-            })
-          });
-          if (emailRes.ok) {
-            emailSent = true;
-            console.log(`[EMAIL DISPATCH SUCCESS] Inquiry email sent to ${email}`);
-          } else {
-            console.warn(`FormSubmit status for ${email}: ${emailRes.status}`);
-          }
-        } catch (emailErr) {
-          console.error(`FormSubmit email dispatch error to ${email}:`, emailErr);
-        }
-      }
-
-      // 2. Custom Webhook / Formspree relay if configured
-      if (webhookUrl) {
-        try {
-          await fetch(webhookUrl, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              company,
-              name,
-              phone,
-              category,
-              message,
-              createdAt,
-              text: `🚨 [WHOMEDIA 신규 프로젝트 문의 접수]\n• 기관/회사명: ${company}\n• 담당자: ${name} (${phone})\n• 문의유형: ${category}\n• 상세내용: ${message}\n• 접수시각: ${createdAt}`
-            })
-          });
-          emailSent = true;
-        } catch (err) {
-          console.error("Webhook dispatch failed:", err);
-        }
-      }
+      console.log(`[INQUIRY RECORDED - Admin Board]`, newInquiry);
 
       return res.json({
         success: true,
-        message: "문의가 성공적으로 접수되어 담당 직원 이메일 및 어드민 시스템에 즉시 전달되었습니다.",
+        message: "문의가 성공적으로 접수되어 관리자 시스템에 등록되었습니다.",
         data: {
           inquiry: newInquiry,
-          emailSent,
           totalLogged: inquiryLogs.length
         }
       });

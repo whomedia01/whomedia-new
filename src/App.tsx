@@ -11,9 +11,11 @@ import { Faq } from './components/Faq';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { ScrollToTop } from './components/ScrollToTop';
+import { AdminBoard } from './components/AdminBoard';
 
 export function App() {
   const [selectedStudio, setSelectedStudio] = useState<string>('');
+  const [isAdminOpen, setIsAdminOpen] = useState<boolean>(false);
   const mainRef = useRef<HTMLDivElement>(null);
 
   const handleStudioSelect = (title: string) => {
@@ -27,7 +29,7 @@ export function App() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans antialiased selection:bg-red-500 selection:text-white">
       {/* Navigation Bar */}
-      <Header />
+      <Header onOpenAdmin={() => setIsAdminOpen(true)} />
 
       {/* Main Content Layout matching video sequence */}
       <main ref={mainRef} className="h-[100dvh] overflow-y-auto snap-y snap-mandatory scroll-smooth w-full">
@@ -63,7 +65,10 @@ export function App() {
       <ScrollToTop scrollContainerRef={mainRef} />
 
       {/* Footer */}
-      <Footer />
+      <Footer onOpenAdmin={() => setIsAdminOpen(true)} />
+
+      {/* Admin Board Modal */}
+      <AdminBoard isOpen={isAdminOpen} onClose={() => setIsAdminOpen(false)} />
     </div>
   );
 }

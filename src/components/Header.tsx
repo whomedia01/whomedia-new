@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Phone, Mail, ChevronRight, Globe } from 'lucide-react';
+import { Menu, X, Phone, ChevronRight, ShieldCheck } from 'lucide-react';
 import { COMPANY_INFO } from '../data/companyData';
 
 interface HeaderProps {
   onNavigate?: (sectionId: string) => void;
   lang?: 'KO' | 'EN';
   onLanguageChange?: (lang: 'KO' | 'EN') => void;
+  onOpenAdmin?: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onNavigate, lang: externalLang = 'KO', onLanguageChange }) => {
+export const Header: React.FC<HeaderProps> = ({ onNavigate, lang: externalLang = 'KO', onLanguageChange, onOpenAdmin }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [lang, setLang] = useState<'KO' | 'EN'>(externalLang);
@@ -162,6 +163,23 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate, lang: externalLang =
               <Phone className="w-3.5 h-3.5 text-emerald-500" />
               <span>{COMPANY_INFO.phone}</span>
             </a>
+
+            {onOpenAdmin && (
+              <button
+                id="header-admin-btn"
+                onClick={onOpenAdmin}
+                className={`text-xs font-bold flex items-center space-x-1 px-3 py-1.5 rounded-lg border transition-all ${
+                  isScrolled 
+                    ? 'bg-slate-100 hover:bg-slate-200 text-slate-800 border-slate-300' 
+                    : 'bg-slate-900/90 hover:bg-slate-800 text-slate-200 border-slate-700'
+                }`}
+                title="관리자 게시판"
+              >
+                <ShieldCheck className="w-3.5 h-3.5 text-red-500" />
+                <span>관리자페이지</span>
+              </button>
+            )}
+
             <button
               id="header-cta-btn"
               onClick={() => scrollTo('contact')}
@@ -228,6 +246,18 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate, lang: externalLang =
               <Phone className="w-4 h-4 text-emerald-600" />
               <span>{COMPANY_INFO.phone}</span>
             </a>
+            {onOpenAdmin && (
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onOpenAdmin();
+                }}
+                className="w-full bg-slate-900 hover:bg-slate-800 text-slate-100 py-2.5 rounded-md font-bold text-sm text-center flex items-center justify-center space-x-2 border border-slate-700"
+              >
+                <ShieldCheck className="w-4 h-4 text-red-500" />
+                <span>관리자 게시판</span>
+              </button>
+            )}
             <button
               onClick={() => scrollTo('contact')}
               className="w-full bg-red-600 hover:bg-red-700 text-white py-2.5 rounded-md font-bold text-sm text-center"
