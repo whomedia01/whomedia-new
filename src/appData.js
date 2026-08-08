@@ -80,6 +80,7 @@ document.addEventListener('alpine:init', () => {
             this.activeStudioImg = '';
             this.activeStudioTitle = '';
         },
+        naverMapUrl: 'https://map.naver.com/p/search/%ED%9B%84%EB%AF%B8%EB%94%94%EC%96%B4/place/13314547',
         showMobileOrgModal: false,
         inquirySuccessModal: false,
         inquirySuccessMessage: '',
