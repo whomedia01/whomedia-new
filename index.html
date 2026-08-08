@@ -426,10 +426,12 @@
                      :class="!scrolled ? 'logo-glow-dark-bg' : ''">
                     <!-- WHO in Crimson Red with 3D LED glow on dark background, solid crisp red on white background -->
                     <span class="font-black transition-colors"
-                          :class="scrolled ? 'text-red-600' : 'text-red-500'">WHO</span>
+                          :style="scrolled ? 'color: #FF0000;' : 'color: #FF0000; text-shadow: 0 0 10px rgba(255,0,0,0.4);'"
+                          style="color: #FF0000;">WHO</span>
                     <!-- MEDIA in Dark Slate when scrolled white header, or Pure White on dark hero header -->
                     <span class="font-black transition-colors ml-[1px]"
-                          :class="scrolled ? 'text-slate-900' : 'text-white'">MEDIA</span>
+                          :style="scrolled ? 'color: #0F172A;' : 'color: #FFFFFF;'"
+                          style="color: #FFFFFF;">MEDIA</span>
                 </div>
                 <!-- Sub-branding Tagline -->
                 <span class="hidden sm:inline-block text-[10px] sm:text-[11px] font-medium tracking-tight leading-none mt-0.5 transition-colors"
@@ -1207,6 +1209,7 @@
                             
                             <!-- Background Image with Subtle Zoom Hover -->
                             <img :src="item.imageUrl"
+                                 @error="$el.src = item.fallbackUrl || 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=1200&q=85'"
                                  :alt="item.title"
                                  referrerpolicy="no-referrer"
                                  class="w-full h-full object-cover transform scale-100 group-hover/slider:scale-105 transition-transform duration-1000 ease-out">
@@ -1658,8 +1661,8 @@
                     <!-- [3D 백라이트 조명 발광 푸터 로고] -->
                     <div class="mb-3">
                         <a href="#" class="inline-flex items-center text-2xl sm:text-3xl font-black brand-logo-font logo-glow-dark-bg select-none tracking-tight">
-                            <span class="text-red-500 font-black">WHO</span>
-                            <span class="text-white font-black ml-[1px]">MEDIA</span>
+                            <span class="font-black" style="color: #FF0000; text-shadow: 0 0 10px rgba(255,0,0,0.4);">WHO</span>
+                            <span class="font-black ml-[1px]" style="color: #FFFFFF;">MEDIA</span>
                         </a>
                     </div>
                     <p class="text-gray-400">㈜후미디어 | 프리미엄 영상 제작, 교육 콘텐츠 컨설팅 &amp; 4K 스튜디오 대여 전문기업</p>
