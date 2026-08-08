@@ -107,13 +107,17 @@ document.addEventListener('alpine:init', () => {
         testEmailSending: false,
 
         init() {
-            setInterval(() => { this.currentKeywordIndex = (this.currentKeywordIndex + 1) % this.keywords.length; }, 2800);
-            this.startServiceAutoPlay();
-            this.startAboutAutoPlay();
-            this.startStudioAutoPlay();
-            this.fetchAdminInquiries();
-            this.checkAdminHash();
-            window.addEventListener('hashchange', () => this.checkAdminHash());
+            try {
+                setInterval(() => { this.currentKeywordIndex = (this.currentKeywordIndex + 1) % this.keywords.length; }, 2800);
+                this.startServiceAutoPlay();
+                this.startAboutAutoPlay();
+                this.startStudioAutoPlay();
+                this.fetchAdminInquiries().catch(err => console.warn('Admin inquiries fetch handled:', err));
+                this.checkAdminHash();
+                window.addEventListener('hashchange', () => this.checkAdminHash());
+            } catch(e) {
+                console.warn('Init non-blocking exception handled:', e);
+            }
         },
 
         checkAdminHash() {

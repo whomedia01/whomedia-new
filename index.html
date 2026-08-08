@@ -296,6 +296,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <style>
+        [x-cloak] { display: none !important; }
         body {
             font-family: 'Paperlogy', 'Pretendard', sans-serif;
             letter-spacing: -0.025em;
@@ -409,7 +410,8 @@
         }
     </style>
 </head>
-<body x-data="whomediaApp"
+<body x-cloak
+      x-data="whomediaApp"
       @scroll.window="scrolled = (window.pageYOffset > 20)"
       @keydown.escape.window="closeModal()">
 
