@@ -15,8 +15,8 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin, pendingCount = 0 })
           {/* Logo */}
           <div>
             <span className="text-2xl font-black tracking-tight text-white block mb-2 font-sans">
-              <span className="text-red-600" style={{ color: '#dc2626' }}>WHO</span>
-              <span className="text-white ml-[1px]" style={{ color: '#ffffff' }}>MEDIA</span>
+              <span>HOO</span>
+              <span className="text-red-500">MEDIA</span>
             </span>
             <p className="text-xs text-slate-400 max-w-md leading-relaxed">
               최첨단 160평 스튜디오 인프라와 4K 전문 멀티미디어 제작 노하우로 최상의 교육 및 방송 콘텐츠를 기획·제작합니다.
@@ -67,7 +67,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin, pendingCount = 0 })
               </button>
             )}
             <p className="text-[11px] text-slate-600">
-              © 2026 WHOMEDIA. All rights reserved.
+              © 2026 HOOMEDIA. All rights reserved.
             </p>
           </div>
         </div>

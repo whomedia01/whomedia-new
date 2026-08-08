@@ -263,11 +263,7 @@
         }
     </style>
     
-    <!-- Global CSS & Tailwind CSS Imports -->
-    <link rel="stylesheet" href="/src/index.css" />
-    <link rel="stylesheet" href="/src/globals.css" />
-
-    <!-- Tailwind CSS CDN Fallback -->
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -296,7 +292,7 @@
     </script>
 
     <!-- Alpine.js & Application State Module -->
-    <script type="module" src="/src/appData.js"></script>
+    <script src="/src/appData.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <style>
@@ -429,20 +425,15 @@
                 <div class="flex items-center text-xl sm:text-2xl font-black brand-logo-font tracking-tight transition-all duration-300"
                      :class="!scrolled ? 'logo-glow-dark-bg' : ''">
                     <!-- WHO in Crimson Red with 3D LED glow on dark background, solid crisp red on white background -->
-                    <span class="font-black transition-colors text-red-600"
-                          :class="scrolled ? 'text-red-600' : 'text-red-500'"
-                          style="color: #dc2626 !important; text-shadow: 0 0 12px rgba(220, 38, 38, 0.45);">WHO</span>
+                    <span class="font-black transition-colors"
+                          :class="scrolled ? 'text-red-600' : 'text-red-500'">WHO</span>
                     <!-- MEDIA in Dark Slate when scrolled white header, or Pure White on dark hero header -->
                     <span class="font-black transition-colors ml-[1px]"
-                          :class="scrolled ? 'text-slate-900' : 'text-white'"
-                          :style="scrolled ? 'color: #0f172a !important;' : 'color: #ffffff !important;'"
-                          style="color: #ffffff !important;">MEDIA</span>
+                          :class="scrolled ? 'text-slate-900' : 'text-white'">MEDIA</span>
                 </div>
                 <!-- Sub-branding Tagline -->
                 <span class="hidden sm:inline-block text-[10px] sm:text-[11px] font-medium tracking-tight leading-none mt-0.5 transition-colors"
-                      :class="scrolled ? 'text-slate-600' : 'text-slate-300'"
-                      :style="scrolled ? 'color: #475569 !important;' : 'color: #e2e8f0 !important;'"
-                      style="color: #e2e8f0 !important;">
+                      :class="scrolled ? 'text-slate-500' : 'text-slate-300/90'">
                     스마트한 교육과 미디어를 완성하는 전문가 그룹
                 </span>
             </a>
@@ -1667,8 +1658,8 @@
                     <!-- [3D 백라이트 조명 발광 푸터 로고] -->
                     <div class="mb-3">
                         <a href="#" class="inline-flex items-center text-2xl sm:text-3xl font-black brand-logo-font logo-glow-dark-bg select-none tracking-tight">
-                            <span class="text-red-600 font-black" style="color: #dc2626 !important; text-shadow: 0 0 12px rgba(220, 38, 38, 0.5);">WHO</span>
-                            <span class="text-white font-black ml-[1px]" style="color: #ffffff !important;">MEDIA</span>
+                            <span class="text-red-500 font-black">WHO</span>
+                            <span class="text-white font-black ml-[1px]">MEDIA</span>
                         </a>
                     </div>
                     <p class="text-gray-400">㈜후미디어 | 프리미엄 영상 제작, 교육 콘텐츠 컨설팅 &amp; 4K 스튜디오 대여 전문기업</p>

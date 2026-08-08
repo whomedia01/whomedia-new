@@ -89,14 +89,11 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate, lang: externalLang =
           <button 
             id="nav-logo"
             onClick={() => scrollTo('about')} 
-            className="flex flex-col text-left group py-0.5 select-none"
+            className="flex items-center space-x-2 text-left group"
           >
-            <div className="flex items-center text-2xl sm:text-3xl font-black tracking-tight font-sans">
-              <span className="font-black" style={{ color: '#FF0000', textShadow: '0 0 10px rgba(255,0,0,0.4)' }}>WHO</span>
-              <span className="font-black ml-[1px]" style={{ color: isScrolled ? '#0F172A' : '#FFFFFF' }}>MEDIA</span>
-            </div>
-            <span className="hidden sm:inline-block text-[10px] sm:text-[11px] font-medium tracking-tight leading-none mt-0.5" style={{ color: isScrolled ? '#475569' : '#E2E8F0' }}>
-              스마트한 교육과 미디어를 완성하는 전문가 그룹
+            <span className="text-2xl sm:text-3xl font-black tracking-tight font-sans">
+              <span className={isScrolled ? 'text-slate-900' : 'text-white'}>HOO</span>
+              <span className="text-red-600">MEDIA</span>
             </span>
           </button>
 

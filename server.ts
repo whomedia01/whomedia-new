@@ -46,34 +46,6 @@ async function startServer() {
 
   app.use(express.json());
 
-  // API endpoint for deployment verification test
-  app.get("/api/test", (_req, res) => {
-    res.send("NEW DEPLOY TEST");
-  });
-
-  app.get("/test", (_req, res) => {
-    res.setHeader("Content-Type", "text/html; charset=utf-8");
-    res.send(`<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>NEW DEPLOY TEST</title>
-    <style>
-        body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background: #0f172a; color: #fff; }
-        .box { text-align: center; padding: 2rem; border: 1px solid #334155; border-radius: 12px; background: #1e293b; }
-        h1 { color: #38bdf8; font-size: 2.5rem; margin-bottom: 0.5rem; }
-    </style>
-</head>
-<body>
-    <div class="box">
-        <h1>NEW DEPLOY TEST</h1>
-        <p>최신 배포 라우트 검증이 정상 작동 중입니다.</p>
-        <p style="color: #94a3b8; font-size: 0.875rem;">Deploy Time: ${new Date().toISOString()}</p>
-    </div>
-</body>
-</html>`);
-  });
-
   // API endpoint for Multi-Admin Inquiry Notification System
   app.post("/api/inquiry", async (req, res) => {
     try {
