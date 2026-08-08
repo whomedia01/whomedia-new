@@ -39,34 +39,35 @@ export const BusinessAreas: React.FC = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/85 to-slate-950/50 group-hover:from-slate-950/95 group-hover:via-slate-950/80 transition-colors duration-500 z-10 pointer-events-none" />
 
             {/* Header Top Bar */}
-            <div className="relative z-20 flex items-center justify-between mb-4">
+            <div className="relative z-20 flex items-center justify-between mb-4 flex-wrap gap-2">
               <span className="px-3 py-1 bg-cyan-500 text-slate-950 text-xs font-black rounded-lg tracking-wider uppercase shadow-md flex items-center gap-1.5">
                 <BookOpen className="w-3.5 h-3.5 text-slate-950" />
                 STEP 01
               </span>
-              <span className="inline-flex items-center gap-1 text-xs font-extrabold text-cyan-300 bg-cyan-950/80 border border-cyan-500/30 px-3 py-1 rounded-full">
-                ✔ 교육 컨설팅
+              <span className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-extrabold text-cyan-300 bg-cyan-950/80 border border-cyan-500/30 px-2.5 py-1 rounded-full">
+                ✔ 이러닝 전문 기획·개발
               </span>
             </div>
 
             {/* Content Area */}
-            <div className="relative z-20 pt-10">
+            <div className="relative z-20 pt-6">
               <div className="mb-3">
-                <h3 className="text-xl sm:text-2xl font-black text-white group-hover:text-cyan-300 transition-colors tracking-tight">
-                  체계적인 이러닝 설계
+                <h3 className="text-lg sm:text-xl font-black text-white group-hover:text-cyan-300 transition-colors tracking-tight leading-snug">
+                  교수설계 기반 맞춤형 이러닝 콘텐츠 기획·개발
+                  <span className="block text-xs sm:text-sm text-cyan-400 font-bold mt-1">(공공·기업·대학 전문)</span>
                 </h3>
               </div>
               <p className="text-xs sm:text-sm text-slate-300 font-medium leading-relaxed mb-4">
-                교육 목적과 타겟에 최적화된 맞춤형 교수설계 및 에듀테크 기반 커리큘럼을 구축합니다.
+                공공기관·기업·대학의 교육 목적에 특화된 체계적 교수설계와 최고품질 콘텐츠로 맞춤형 이러닝을 완성합니다.
               </p>
               <ul className="space-y-2.5 border-t border-white/15 pt-4 text-xs font-medium text-slate-200">
                 <li className="flex items-start gap-2">
                   <Check className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-                  <span>맞춤형 이러닝 콘텐츠 교수설계 및 개발</span>
+                  <span className="font-semibold text-cyan-200">교수설계 기반 맞춤형 이러닝 콘텐츠 기획·개발 (공공·기업·대학 전문)</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <Check className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-                  <span>기업·공공 맞춤형 에듀테크 교육 과정 구축</span>
+                  <span>에듀테크 기반 LMS 연동 &amp; 인터랙티브 학습 과정 설계</span>
                 </li>
               </ul>
             </div>

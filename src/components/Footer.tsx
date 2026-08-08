@@ -4,9 +4,10 @@ import { Phone, Mail, MapPin, ShieldCheck } from 'lucide-react';
 
 interface FooterProps {
   onOpenAdmin?: () => void;
+  pendingCount?: number;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onOpenAdmin }) => {
+export const Footer: React.FC<FooterProps> = ({ onOpenAdmin, pendingCount = 0 }) => {
   return (
     <footer className="bg-slate-950 text-slate-400 py-12 border-t border-slate-800 text-xs snap-end flex-shrink-0">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -54,10 +55,15 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin }) => {
             {onOpenAdmin && (
               <button
                 onClick={onOpenAdmin}
-                className="text-xs text-slate-400 hover:text-white flex items-center space-x-1 underline decoration-slate-700 underline-offset-4"
+                className="text-xs text-slate-400 hover:text-white flex items-center space-x-1.5 underline decoration-slate-700 underline-offset-4"
               >
                 <ShieldCheck className="w-3.5 h-3.5 text-red-500" />
                 <span>관리자 게시판</span>
+                {pendingCount > 0 && (
+                  <span className="bg-red-600 text-white text-[10px] font-black px-1.5 py-0.2 rounded-full animate-pulse no-underline inline-block">
+                    {pendingCount}
+                  </span>
+                )}
               </button>
             )}
             <p className="text-[11px] text-slate-600">

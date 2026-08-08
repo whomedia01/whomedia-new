@@ -7,9 +7,10 @@ interface HeaderProps {
   lang?: 'KO' | 'EN';
   onLanguageChange?: (lang: 'KO' | 'EN') => void;
   onOpenAdmin?: () => void;
+  pendingCount?: number;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onNavigate, lang: externalLang = 'KO', onLanguageChange, onOpenAdmin }) => {
+export const Header: React.FC<HeaderProps> = ({ onNavigate, lang: externalLang = 'KO', onLanguageChange, onOpenAdmin, pendingCount = 0 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [lang, setLang] = useState<'KO' | 'EN'>(externalLang);
@@ -168,7 +169,7 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate, lang: externalLang =
               <button
                 id="header-admin-btn"
                 onClick={onOpenAdmin}
-                className={`text-xs font-bold flex items-center space-x-1 px-3 py-1.5 rounded-lg border transition-all ${
+                className={`text-xs font-bold flex items-center space-x-1.5 px-3 py-1.5 rounded-lg border transition-all relative ${
                   isScrolled 
                     ? 'bg-slate-100 hover:bg-slate-200 text-slate-800 border-slate-300' 
                     : 'bg-slate-900/90 hover:bg-slate-800 text-slate-200 border-slate-700'
@@ -177,6 +178,11 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate, lang: externalLang =
               >
                 <ShieldCheck className="w-3.5 h-3.5 text-red-500" />
                 <span>관리자페이지</span>
+                {pendingCount > 0 && (
+                  <span className="bg-red-600 text-white text-[10px] font-black px-1.5 py-0.2 rounded-full animate-pulse shadow-sm">
+                    {pendingCount}
+                  </span>
+                )}
               </button>
             )}
 
@@ -252,10 +258,15 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate, lang: externalLang =
                   setMobileMenuOpen(false);
                   onOpenAdmin();
                 }}
-                className="w-full bg-slate-900 hover:bg-slate-800 text-slate-100 py-2.5 rounded-md font-bold text-sm text-center flex items-center justify-center space-x-2 border border-slate-700"
+                className="w-full bg-slate-900 hover:bg-slate-800 text-slate-100 py-2.5 rounded-md font-bold text-sm text-center flex items-center justify-center space-x-2 border border-slate-700 relative"
               >
                 <ShieldCheck className="w-4 h-4 text-red-500" />
                 <span>관리자 게시판</span>
+                {pendingCount > 0 && (
+                  <span className="bg-red-600 text-white text-[10px] font-black px-2 py-0.5 rounded-full animate-pulse">
+                    {pendingCount}
+                  </span>
+                )}
               </button>
             )}
             <button

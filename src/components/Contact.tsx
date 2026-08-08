@@ -5,9 +5,10 @@ import { Phone, Mail, MapPin, ExternalLink, Send, CheckCircle2 } from 'lucide-re
 
 interface ContactProps {
   initialStudioSelect?: string;
+  onInquirySubmitted?: () => void;
 }
 
-export const Contact: React.FC<ContactProps> = ({ initialStudioSelect }) => {
+export const Contact: React.FC<ContactProps> = ({ initialStudioSelect, onInquirySubmitted }) => {
   const [formData, setFormData] = useState<InquiryFormData>({
     clientName: '',
     contactPerson: '',
@@ -38,6 +39,7 @@ export const Contact: React.FC<ContactProps> = ({ initialStudioSelect }) => {
           message: formData.message,
         })
       });
+      onInquirySubmitted?.();
     } catch (err) {
       console.error('Inquiry submission error:', err);
     }

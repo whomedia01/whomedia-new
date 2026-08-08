@@ -19,16 +19,28 @@ import {
   Tag, 
   MessageSquare,
   ShieldCheck,
-  ChevronDown
+  ChevronDown,
+  Bell
 } from 'lucide-react';
 import { InquiryLogItem } from '../types';
 
 interface AdminBoardProps {
   isOpen: boolean;
   onClose: () => void;
+  inquiriesProps?: InquiryLogItem[];
+  onRefreshInquiries?: () => void;
+  notificationPermission?: NotificationPermission;
+  onRequestNotificationPermission?: () => void;
 }
 
-export const AdminBoard: React.FC<AdminBoardProps> = ({ isOpen, onClose }) => {
+export const AdminBoard: React.FC<AdminBoardProps> = ({ 
+  isOpen, 
+  onClose,
+  inquiriesProps,
+  onRefreshInquiries,
+  notificationPermission,
+  onRequestNotificationPermission
+}) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [password, setPassword] = useState<string>('');
   const [passwordError, setPasswordError] = useState<boolean>(false);
@@ -45,17 +57,27 @@ export const AdminBoard: React.FC<AdminBoardProps> = ({ isOpen, onClose }) => {
   const fetchInquiries = useCallback(async () => {
     setIsLoading(true);
     try {
-      const res = await fetch('/api/inquiries');
-      const json = await res.json();
-      if (json.success && Array.isArray(json.data)) {
-        setInquiries(json.data);
+      if (onRefreshInquiries) {
+        await onRefreshInquiries();
+      } else {
+        const res = await fetch('/api/inquiries');
+        const json = await res.json();
+        if (json.success && Array.isArray(json.data)) {
+          setInquiries(json.data);
+        }
       }
     } catch (err) {
       console.error('Failed to fetch inquiries:', err);
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, [onRefreshInquiries]);
+
+  useEffect(() => {
+    if (inquiriesProps) {
+      setInquiries(inquiriesProps);
+    }
+  }, [inquiriesProps]);
 
   useEffect(() => {
     if (isOpen && isAuthenticated) {
@@ -335,6 +357,23 @@ export const AdminBoard: React.FC<AdminBoardProps> = ({ isOpen, onClose }) => {
 
               {/* Action Buttons */}
               <div className="flex items-center space-x-2">
+                {onRequestNotificationPermission && (
+                  <button
+                    onClick={onRequestNotificationPermission}
+                    className={`text-xs font-bold px-3 py-2 rounded-lg border transition-all flex items-center space-x-1 ${
+                      notificationPermission === 'granted'
+                        ? 'bg-emerald-950/60 text-emerald-400 border-emerald-500/40 hover:bg-emerald-900/60'
+                        : 'bg-amber-950/60 text-amber-400 border-amber-500/40 hover:bg-amber-900/60'
+                    }`}
+                    title="실시간 브라우저 데스크톱 알림 설정"
+                  >
+                    <Bell className="w-3.5 h-3.5" />
+                    <span className="hidden sm:inline">
+                      {notificationPermission === 'granted' ? '알림 켜짐' : '데스크톱 알림 켜기'}
+                    </span>
+                  </button>
+                )}
+
                 <button
                   onClick={fetchInquiries}
                   disabled={isLoading}

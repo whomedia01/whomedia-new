@@ -126,18 +126,18 @@ export const Hero: React.FC = () => {
         <div className="text-center max-w-4xl mx-auto space-y-4 sm:space-y-6 md:space-y-7 w-full my-auto">
           
           {/* Main Title & Dynamic Keyword Subheading */}
-          <div className="space-y-2.5 sm:space-y-4">
-            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.25] sm:leading-tight break-keep">
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 font-black mb-1">
-                이러닝 개발 · 영상 제작 · 홍보 마케팅
+          <div className="space-y-3 sm:space-y-5">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.25] sm:leading-snug break-keep">
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 font-black mb-1.5 text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
+                교육의 미래를 완성하다
               </span>
-              <span className="text-white text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black block">
-                성공을 이끄는 통합 솔루션
+              <span className="text-slate-100 text-lg sm:text-2xl md:text-3xl lg:text-4xl font-extrabold block">
+                이러닝 콘텐츠 기획·개발 · 영상 제작 · 오프라인 전문 교육 그룹
               </span>
             </h1>
 
-            <p className="text-slate-200 text-xs sm:text-base md:text-lg font-medium leading-relaxed max-w-xl mx-auto px-2 break-keep">
-              기획부터 제작·마케팅까지 원스톱으로, 귀사의 프로젝트를 완벽하게 이끕니다.
+            <p className="text-slate-200 text-xs sm:text-base md:text-lg font-medium leading-relaxed max-w-2xl mx-auto px-2 break-keep">
+              체계적인 교수설계 기반의 맞춤형 이러닝 콘텐츠 개발부터 전문 영상 제작, 오프라인 교육까지 대한민국 프리미엄 교육 그룹의 기준을 만들어갑니다.
             </p>
 
             {/* Rolling Keyword Display */}
